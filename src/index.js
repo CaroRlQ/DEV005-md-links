@@ -1,5 +1,6 @@
 import { promises } from 'node:dns';
 import * as fs from 'node:fs';
+import { url } from 'node:inspector';
 import * as path from 'node:path';
 /* module.exports = () => {
 
@@ -107,7 +108,7 @@ suma(7, 5)
           return;
         }
         const promisesToDirectory = allfiles.map((fileFind) => {
-          console.log(fileFind);
+        //  console.log(fileFind);
           const pathAbsolute = path.join(pathNormalize, fileFind);
           return new Promise((resolveFile) => {
             fs.stat(pathAbsolute, (e, sta) => {
@@ -118,7 +119,7 @@ suma(7, 5)
               if (sta.isFile()) {
                 pathFound.push(pathAbsolute);
                 resolveFile(pathAbsolute);
-                console.log('resolvefile', resolveFile(pathAbsolute));
+               // console.log('resolvefile', resolveFile(pathAbsolute));
               } else {
                 searchFiles(pathAbsolute)
                   .then((resultDirectory) => {
@@ -136,135 +137,173 @@ suma(7, 5)
       });
     }
   });
-}); */
+});
 
-/* searchFiles('C:\\Users\\ASUS\\Desktop\\soyUnaCarpeta')
+searchFiles('D:\\0 LABORATORIA')
   .then((result) => {
-    console.log(result);
+    console.log('result', result);
     console.log(result.length);
     const filesMd = result.filter((index) => path.extname(index) === '.md');
-    console.log(filesMd);
+    console.log('files', filesMd.length);
     return filesMd;
   })
-  .catch((e) => console.log('probando', e));
-*/
+  .catch((e) => console.log('probando', e)); */
+
 /* ------------------------------Función para extraer links -------------------------*/
 
 const rutaPrueba = 'C:\\Users\\ASUS\\Desktop\\soyUnaCarpeta\\soy una carpeta otra vez\\carpeta otra vez\\soy otra vez otro md.md';
 const pruebaArray = [['C:\\Users\\ASUS\\Desktop\\soyUnaCarpeta\\soy una carpeta otra vez\\carpeta otra vez\\soy otra vez otro md.md'],
   ['C:\\Users\\ASUS\\Desktop\\soyUnaCarpeta\\soy una carpeta otra vez\\carpeta otra vez\\soy otra vez otro md1 - copia.md']];
-const searchlinks = (pathfiles) => new Promise((res, rej) => {
-  const matchArray = [];
-  const allLinks = pathfiles.map((indexFiles) => new Promise((resolve, reject) => {
-    console.log('indexFiles', indexFiles);
+// const searchlinks = (pathfiles) => new Promise((res, rej) => {
+//   const matchArray = [];
+//   const allLinks = pathfiles.map((indexFiles) => new Promise((resolve, reject) => {
+//     console.log('indexFiles', indexFiles);
 
-    fs.readFile(indexFiles[0], 'utf8', (er, data) => {
-      const exRegularLinksMd = /\[([^\\[]+)\](\(.*\))/gm;
-      const filterLinks = data.match(exRegularLinksMd);
-      console.log('filterLinks', filterLinks);
-      if (er) {
-        reject(er);
-      }
-      if (filterLinks === null) {
-        console.log(`No se han encontrado Links en ${indexFiles} `);
-      }
-      filterLinks.forEach((index) => {
-        const singleMatch = /\[([^\\[]+)\]\((.*)\)/;
-        const text = singleMatch.exec(index);
-        const matchLinks = {
-          href: text[2],
-          text: text[1],
-          file: `${indexFiles}`,
-        };
+//     fs.readFile(indexFiles[0], 'utf8', (er, data) => {
+//       const exRegularLinksMd = /\[([^\\[]+)\](\(.*\))/gm;
+//       const filterLinks = data.match(exRegularLinksMd);
+//       console.log('filterLinks', filterLinks);
+//       if (er) {
+//         reject(er);
+//       }
+//       if (filterLinks === null) {
+//         console.log(`No se han encontrado Links en ${indexFiles} `);
+//       }
+//       filterLinks.forEach((index) => {
+//         const singleMatch = /\[([^\\[]+)\]\((.*)\)/;
+//         const text = singleMatch.exec(index);
+//         const matchLinks = {
+//           href: text[2],
+//           text: text[1],
+//           file: `${indexFiles}`,
+//         };
 
-        matchArray.push(matchLinks);
-        resolve(matchArray);
-      });
-    });
-  }));
+//         matchArray.push(matchLinks);
+//         resolve(matchArray);
+//       });
+//     });
+//   }));
 
-  /* matchArray.forEach((index) => { arrayUnido = arrayUnido.concat(index); });
-  console.log('arrayUnido', arrayUnido); */
+//  matchArray.forEach((index) => { arrayUnido = arrayUnido.concat(index); });
+//   console.log('arrayUnido', arrayUnido); */
 
-  Promise.all(allLinks)
-    .then((resu) => {
-      const arrayJoin = [].concat(...resu);
-      console.log(arrayJoin);
-      res(arrayJoin);
-    })
-    .catch((err) => console.log(err));
+//   Promise.all(allLinks)
+//     .then((resu) => {
+//       const arrayJoin = [].concat(...resu);
+//       res(arrayJoin);
+//     })
+//     .catch((err) => console.log(err));
+// });
+// // searchlinks(pruebaArray).then((res) => console.log(res));
+// const filesMd = (pathFile) => {
+//   const filesMdFind = [];
+//   console.log('md', filesMdFind[0]);
+//   fs.readdir(pathFile, (e, files) => {
+//     files.forEach((index) => {
+//       if (path.extname(index) === '.md') {
+//         filesMdFind.push(index);
+//       } else {
+//         console.log('no se ha encontrado nada');
+//       }
+//     });
+//   });
+//   return filesMdFind;
+// };
+// console.log(filesMd('C:\\Users\\ASUS\\Desktop\\soyUnaCarpeta'));
+//  const searchFiles = (findPath) => new Promise((resolve, reject) => {
+//   const pathNormalize = path.normalize(path.join(findPath));
+//   const pathFound = [];
+//   if (!fs.existsSync(pathNormalize)) {
+//     reject(new Error('La ruta no existe'));
+//     return;
+//   }
+//   fs.stat(pathNormalize, (error, stats) => {
+//     if (error) {
+//       reject(error);
+//     }
+//     if (stats.isFile()) {
+//       pathFound.push(pathNormalize);
+//     } else {
+//       // Leer todo el directorio
+//       fs.readdir(pathNormalize, (err, allfiles) => {
+//         let counter = allfiles.length;
+//         if (err) {
+//           reject(err);
+//           return;
+//         }
+//         allfiles.forEach((fileFind) => {
+//           const pathAbsolute = path.join(pathNormalize, fileFind);
+//           if (fs.stat(pathAbsolute, (er, stats1) => {
+//             if (er) {
+//               reject(er);
+//               return;
+//             }
+//             // Si es un archivo, se enviará en la carpeta fileFound
+//             if (stats1.isFile()) {
+//               pathFound.push(pathAbsolute);
+//               counter -= 1;
+//               if (counter === 0) {
+//                 resolve(pathFound);
+//               }
+//             } else { // Es un directorio
+//               searchFiles(pathAbsolute)
+//                 .then((result) => {
+//                   pathFound.push(...result);
+//                   counter -= 1;
+//                   if (counter === 0) {
+//                     resolve(pathFound);
+//                   }
+//                 })
+//                 .catch(reject);
+//             }
+//           }));
+//         });
+//       });
+//     }
+//   });
+// });
 
-});
-console.log('pro', searchlinks(pruebaArray));
-/* const filesMd = (pathFile) => {
-  const filesMdFind = [];
-  console.log('md', filesMdFind[0]);
-  fs.readdir(pathFile, (e, files) => {
-    files.forEach((index) => {
-      if (path.extname(index) === '.md') {
-        filesMdFind.push(index);
-      } else {
-        console.log('no se ha encontrado nada');
-      }
-    });
-  });
-  return filesMdFind;
-};
-console.log(filesMd('C:\\Users\\ASUS\\Desktop\\soyUnaCarpeta')); */
-/* const searchFiles = (findPath) => new Promise((resolve, reject) => {
-  const pathNormalize = path.normalize(path.join(findPath));
-  const pathFound = [];
-  if (!fs.existsSync(pathNormalize)) {
-    reject(new Error('La ruta no existe'));
-    return;
-  }
-  fs.stat(pathNormalize, (error, stats) => {
-    if (error) {
-      reject(error);
+// searchFiles('D:\\0 LABORATORIA')
+//   .then((result) => console.log(result))
+
+//   .catch((e) => console.log('probando', e));
+/* --------------------------Funcion sincrónica para extraer archivos Md de carpetas -------------*/
+const searchFilesMd = (findPathMd) => {
+  const searchFiles = (findPath) => {
+    const pathNormalize = path.normalize(path.join(findPath));
+    // const pathFound = [];
+    // console.log('pathFound', pathFound);
+    let pathFound = [];
+    if (!fs.existsSync(pathNormalize)) {
+      console.log('La ruta insertada no existe');
+      return pathFound;
     }
-    if (stats.isFile()) {
-      pathFound.push(pathNormalize);
+    const statsPath = fs.statSync(pathNormalize);
+    if (statsPath.isFile()) {
+      pathFound = [pathNormalize];
     } else {
-      // Leer todo el directorio
-      fs.readdir(pathNormalize, (err, allfiles) => {
-        let counter = allfiles.length;
-        if (err) {
-          reject(err);
-          return;
-        }
-        allfiles.forEach((fileFind) => {
-          const pathAbsolute = path.join(pathNormalize, fileFind);
-          if (fs.stat(pathAbsolute, (er, stats1) => {
-            if (er) {
-              reject(er);
-              return;
-            }
-            // Si es un archivo, se enviará en la carpeta fileFound
-            if (stats1.isFile()) {
-              pathFound.push(pathAbsolute);
-              counter -= 1;
-              if (counter === 0) {
-                resolve(pathFound);
-              }
-            } else { // Es un directorio
-              searchFiles(pathAbsolute)
-                .then((result) => {
-                  pathFound.push(...result);
-                  counter -= 1;
-                  if (counter === 0) {
-                    resolve(pathFound);
-                  }
-                })
-                .catch(reject);
-            }
-          }));
-        });
-      });
+      pathFound = [];
     }
-  });
-});
 
-searchFiles('D:\\0 LABORATORIA')
-  .then((result) => console.log(result))
+    const fileNames = fs.readdirSync(pathNormalize);
+    // console.log(fileNames);
+    fileNames.forEach((fileFind) => {
+      const pathAbsolute = path.join(pathNormalize, fileFind);
+      const statFileFind = fs.statSync(pathAbsolute);
+      if (statFileFind.isFile()) {
+        pathFound.push(pathAbsolute);
+      } else {
+        pathFound.push(...searchFiles(pathAbsolute));
+      }
+    });
 
-  .catch((e) => console.log('probando', e)); */
+    return pathFound;
+  };
+
+  const fileMd = searchFiles(findPathMd).filter((indexMd) => path.extname(indexMd) === '.md');
+  return fileMd;
+};
+
+console.log('resultado', searchFilesMd('C:\\Users\\ASUS\\Desktop\\soyUnaCarpeta'));
+
+/* ---------------------------------- Función para extraer links de archivos md ------------------*/
