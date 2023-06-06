@@ -11,7 +11,7 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 /* -------------------------Funcion asincrónica para extraer archivos Md de carpetas -------------*/
 const searchFiles = findPath => {
   const pathNormalize = path.normalize(path.join(findPath));
-  console.log('pathNormalize', pathNormalize);
+  // console.log('pathNormalize', pathNormalize);
   // const pathFound = [];
   // console.log('pathFound', pathFound);
   const pathFound = [];

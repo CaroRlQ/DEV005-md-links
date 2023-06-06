@@ -15,47 +15,55 @@ axios.get('http://cdalp.org.bo/encuentro-bi-nacional-de-arquitectos-bolivia-peru
   }); */
 
 const validateLinks = (validate) => {
-  const linksToValidate = validate.map((indexLink) => new Promise((resolve) => {
+  const linksToValidate = validate.map((indexLink) => {
     const linkToValidate = indexLink.href;
-    axios.head(linkToValidate)
+    return axios.head(linkToValidate)
       .then((response) => {
-        if (response.status === 200) {
-          const pathOk = {
-            status: response.status,
-            validate: 'ok',
-          };
-          const linksValidate = Object.assign(indexLink, pathOk);
-          resolve(linksValidate);
-        } else {
+        const pathOk = {
+          status: response.status,
+          validate: 'ok',
+        };
+        const pathValidate = Object.assign(indexLink, pathOk);
+        // console.log('pathValidate', pathValidate);
+        return pathValidate;
+      })
+
+      .catch((error) => {
+        // console.log('error', error.status);
+
+        if (error.response && error.response.status !== undefined) {
           const pathFail = {
-            status: response.status,
+            status: error.response.status,
             validate: 'fail',
           };
-          const linksInvalidate = Object.assign(indexLink, pathFail);
-          resolve(linksInvalidate);
+          const pathInvalidate = Object.assign(indexLink, pathFail);
+          // console.log('error', pathInvalidate);
+          return pathInvalidate;
         }
-      })
-      .catch((error) => {
-        // console.error('Error:', error.message);
         const pathFail = {
-          status: error.response ? error.response.status : 'unknown',
+          status: 'unknown',
           validate: 'fail',
         };
-        const linksInvalidate = Object.assign(indexLink, pathFail);
-        resolve(linksInvalidate);
+        const pathInvalidate = Object.assign(indexLink, pathFail);
+        console.log('unknow', pathInvalidate);
+        return pathInvalidate;
       });
-  }));
+  });
   return Promise.all(linksToValidate);
 };
 
-searchlinks(searchFilesMd('C:\\Users\\ASUS\\Desktop\\soyUnaCarpeta'))
+searchlinks(searchFilesMd('C:\\Users\\ASUS\\Desktop\\soyUnaCarpeta\\soy una carpeta otra vez\\carpeta otra vez\\soy otra vez otro md - copia.md'))
   .then((resul) => {
+    // console.log('resul', resul.length);
     validateLinks(resul)
+
       .then((ok) => {
-        console.log('ok', ok);
+        //  console.log('ok', ok);
       })
       .catch((error) => {
-        console.log('fail', error);
+        //  console.log('fail', error);
       });
   })
   .catch((err) => console.log(err));
+
+export default validateLinks;

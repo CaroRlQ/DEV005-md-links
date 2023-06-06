@@ -40,7 +40,7 @@ const searchlinks = (pathfiles) => {
 };
 searchlinks(searchFilesMd('C:\\Users\\ASUS\\Desktop\\soyUnaCarpeta'))
   .then((resul) => {
-    console.log(resul);
+   // console.log(resul);
   })
   .catch((err) => console.log(err));
 
