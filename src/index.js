@@ -1,5 +1,4 @@
 import * as fs from 'node:fs';
-
 import * as path from 'node:path';
 
 // Función para extraer archivos de carpetas y subcarpetas

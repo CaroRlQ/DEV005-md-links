@@ -12,7 +12,7 @@ const mdLinks = (pathRelative, option) => {
 
   return searchlinks(filesMd)
     .then((resul) => {
-      if (option) {
+      if (option.validate) {
         // console.log('resul', resul); // devuelve un array de objeto
         return validateLinks(resul);
       }
@@ -28,7 +28,7 @@ const mdLinks = (pathRelative, option) => {
 const opcionPrueba = {
   validate: true,
 };
-const pathPrueba = 'C:\\Users\\ASUS\\Desktop\\soyUnaCarpeta\\soy una carpeta otra vez\\carpeta otra vez\\soy otra vez otro md - copia.md';
+const pathPrueba = 'C:\\Users\\ASUS\\Desktop\\soyUnaCarpeta';
 mdLinks(pathPrueba, opcionPrueba)
   .then((res) => {
     console.log(res);

@@ -45,14 +45,14 @@ const validateLinks = (validate) => {
           validate: 'fail',
         };
         const pathInvalidate = Object.assign(indexLink, pathFail);
-        console.log('unknow', pathInvalidate);
+       // console.log('unknow', pathInvalidate);
         return pathInvalidate;
       });
   });
   return Promise.all(linksToValidate);
 };
 
-searchlinks(searchFilesMd('C:\\Users\\ASUS\\Desktop\\soyUnaCarpeta\\soy una carpeta otra vez\\carpeta otra vez\\soy otra vez otro md - copia.md'))
+/* searchlinks(searchFilesMd('C:\\Users\\ASUS\\Desktop\\soyUnaCarpeta\\soy una carpeta otra vez\\carpeta otra vez\\soy otra vez otro md - copia.md'))
   .then((resul) => {
     // console.log('resul', resul.length);
     validateLinks(resul)
@@ -64,6 +64,6 @@ searchlinks(searchFilesMd('C:\\Users\\ASUS\\Desktop\\soyUnaCarpeta\\soy una carp
         //  console.log('fail', error);
       });
   })
-  .catch((err) => console.log(err));
+  .catch((err) => console.log(err)); */
 
 export default validateLinks;
