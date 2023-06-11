@@ -13,14 +13,15 @@ $ npm install md-links-clr
 ```sh
 $ md-links "ruta_de_archivo_o_directorio" [--validate] [--stats]
 ```
-   * <"ruta_de_archivo_o_directorio">: Es la ruta del archivo o directorio del cual deseas obtener la información de los enlaces.
-   * --validate (opcional): Si agregas este parámetro, se realizará una    validación de los enlaces encontrados.
-   * --stats (opcional): Si agregas este parámetro, se mostrará un resumen estadístico de los enlaces encontrados.
+   * **<"ruta_de_archivo_o_directorio">:** Es la ruta del archivo o directorio del cual deseas obtener la información de los enlaces.
+   * **--validate (opcional):** Si agregas este parámetro, se realizará una    validación de los enlaces encontrados.
+   * **--stats (opcional):** Si agregas este parámetro, se mostrará un resumen estadístico de los enlaces encontrados.
  
 ### 2.1 Ejemplo de uso:
 #### Sin opciones ;
 ```sh
 $ md-links "C:\Users\ASUS\Desktop\soyUnaCarpeta"
+// resultado...
 [
  {
     href: 'https://www.youtube.com/watch?v=xOinGb2MZSk&t=580s&ab_channel=SoyDaltot',    text: 'Video de Javascript Dalto',
@@ -36,6 +37,7 @@ $ md-links "C:\Users\ASUS\Desktop\soyUnaCarpeta"
 #### Con --validate;
 ```sh
 $ md-links "C:\Users\ASUS\Desktop\soyUnaCarpeta" --validate
+// resultado...
 [
   {
     href: 'https://www.youtube.com/watch?v=xOinGb2MZSk&t=580s&ab_channel=SoyDaltot',    text: 'Video de Javascript Dalto',
@@ -53,12 +55,14 @@ $ md-links "C:\Users\ASUS\Desktop\soyUnaCarpeta" --validate
 ]
 ```
 #### Con --stats;
+// resultado...
 ```sh
 $ md-links "C:\Users\ASUS\Desktop\soyUnaCarpeta" --stats
      { total: 2, unique: 2 }
 ```
 
 #### Con -- validate --stats;
+// resultado...
 ```sh
 $ md-links "C:\Users\ASUS\Desktop\soyUnaCarpeta" --validate --stats
   total : 2
