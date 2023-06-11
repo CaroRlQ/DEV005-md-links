@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-import mdLinks from '../DEV005-md-links/src/mdLinks';
+// eslint-disable-next-line import/extensions
+import mdLinks from './src/mdLinks.js';
 
 const argument02 = process.argv; // Ingreso de validate
 const argument03 = argument02[2].trim();
