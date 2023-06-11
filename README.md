@@ -1,25 +1,26 @@
-# md-links-clr (Markdown Links) 
+# Markdown Links(md-links-clr) 
 
 Es una biblioteca para Node.js que permite extraer y validar enlaces (URLs) dentro de archivos Markdown (.md). Proporciona una interfaz de línea de comandos (CLI) que acepta rutas de archivos o directorios como entrada y muestra información detallada de los enlaces encontrados;  URL, texto y estado. Además, ofrece opciones para realizar validaciones de los enlaces, como verificar su disponibilidad y el código de respuesta HTTP. Es una herramienta útil que te permitirá verificar el estado de URLs.
 
 
-### 1 Instalación 
+## 1 Instalación 
 Puedes instalar el paquete md-links-clr ejecutando el siguiente comando en tu terminal:
 ```sh
 $ npm install md-links-clr
 ```
 
-### 2 Modo de uso: 
+## 2 Modo de uso: 
 ```sh
-$ md-links <"ruta_de_archivo_o_directorio"> [--validate] [--stats]
+$ md-links "ruta_de_archivo_o_directorio" [--validate] [--stats]
 ```
    * <"ruta_de_archivo_o_directorio">: Es la ruta del archivo o directorio del cual deseas obtener la información de los enlaces.
    * --validate (opcional): Si agregas este parámetro, se realizará una    validación de los enlaces encontrados.
    * --stats (opcional): Si agregas este parámetro, se mostrará un resumen estadístico de los enlaces encontrados.
-#### 2.1 Ejemplo de uso:
-##### Sin opciones ;
+ 
+### 2.1 Ejemplo de uso:
+#### Sin opciones ;
 ```sh
-$ md-links <"C:\Users\ASUS\Desktop\soyUnaCarpeta">
+$ md-links "C:\Users\ASUS\Desktop\soyUnaCarpeta"
 [
  {
     href: 'https://www.youtube.com/watch?v=xOinGb2MZSk&t=580s&ab_channel=SoyDaltot',    text: 'Video de Javascript Dalto',
@@ -32,9 +33,9 @@ $ md-links <"C:\Users\ASUS\Desktop\soyUnaCarpeta">
   }
 ]
 ```
-##### Con --validate;
+#### Con --validate;
 ```sh
-$ md-links <"C:\Users\ASUS\Desktop\soyUnaCarpeta"> [--validate]
+$ md-links "C:\Users\ASUS\Desktop\soyUnaCarpeta" --validate
 [
   {
     href: 'https://www.youtube.com/watch?v=xOinGb2MZSk&t=580s&ab_channel=SoyDaltot',    text: 'Video de Javascript Dalto',
@@ -51,15 +52,15 @@ $ md-links <"C:\Users\ASUS\Desktop\soyUnaCarpeta"> [--validate]
   }
 ]
 ```
-##### Con --stats;
+#### Con --stats;
 ```sh
-$ md-links <"C:\Users\ASUS\Desktop\soyUnaCarpeta"> [--stats]
+$ md-links "C:\Users\ASUS\Desktop\soyUnaCarpeta" --stats
      { total: 2, unique: 2 }
 ```
 
-##### Con -- validate --stats;
+#### Con -- validate --stats;
 ```sh
-$ md-links <"C:\Users\ASUS\Desktop\soyUnaCarpeta"> [--validate] [--stats]
+$ md-links "C:\Users\ASUS\Desktop\soyUnaCarpeta" --validate --stats
   total : 2
   unique : 2
   broken : 1   
@@ -79,4 +80,4 @@ $ md-links <"C:\Users\ASUS\Desktop\soyUnaCarpeta"> [--validate] [--stats]
   }
 ]
 ```
-### 3 Diagrama de flujo:
+## 3 Diagrama de flujo:
