@@ -1,16 +1,12 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
-/* -------------------------Funcion asincrónica para extraer archivos Md de carpetas -------------*/
+/* -------------------------Funcion sincrónica para extraer archivos Md de carpetas -------------*/
 const searchFiles = (findPath) => {
   const pathNormalize = path.normalize(path.join(findPath));
- // console.log('pathNormalize', pathNormalize);
-  // const pathFound = [];
-  // console.log('pathFound', pathFound);
   const pathFound = [];
   if (!fs.existsSync(pathNormalize)) {
-    console.log('La ruta insertada no existe');
-    return pathFound;
+    throw new Error('La ruta insertada no existe');
   }
   const statsPath = fs.statSync(pathNormalize);
   if (statsPath.isFile()) {
