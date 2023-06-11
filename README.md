@@ -55,16 +55,17 @@ $ md-links "C:\Users\ASUS\Desktop\soyUnaCarpeta" --validate
 ]
 ```
 #### Con --stats;
-// resultado...
 ```sh
 $ md-links "C:\Users\ASUS\Desktop\soyUnaCarpeta" --stats
+// resultado...
      { total: 2, unique: 2 }
 ```
 
 #### Con -- validate --stats;
-// resultado...
+
 ```sh
 $ md-links "C:\Users\ASUS\Desktop\soyUnaCarpeta" --validate --stats
+// resultado...
   total : 2
   unique : 2
   broken : 1   
