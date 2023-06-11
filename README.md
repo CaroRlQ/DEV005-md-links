@@ -86,3 +86,4 @@ $ md-links "C:\Users\ASUS\Desktop\soyUnaCarpeta" --validate --stats
 ]
 ```
 ## 3 Diagrama de flujo:
+  * [Links de Diagrema de flujo](https://lucid.app/lucidchart/0e68b570-7714-48f0-902a-24b432a40e70/edit?invitationId=inv_13b3e533-4d6b-4176-b2a0-ff75326657ff&page=0_0#)
