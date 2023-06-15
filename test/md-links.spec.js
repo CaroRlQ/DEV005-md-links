@@ -55,8 +55,8 @@ describe('searchlinks function', () => {
 // jest.mock('axios');
 
 describe('validateLinks function', () => {
-  afterEach(() => {
-    jest.clearAllMocks();
+   beforeEach(() => {
+    jest.mockReset();
   });
 
   test('debería retornar un array de objetos con los links validados y con las propeidades de status y validate', () => {
